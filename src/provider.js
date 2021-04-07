@@ -1,12 +1,13 @@
-'use babel';
+'use babel'
 
-const completions = require('./completions.json');
+const completions = require('./completions.json')
 
 module.exports = {
   /**
    * @type {string}
    */
-  selector: '.text.html.erb, .string.quoted, .text.html.basic, .source.pug .constant.language.js, .meta.property-list.css, .meta.property-list.scss',
+  selector:
+    '.text.html.erb, .string.quoted, .text.html.basic, .source.pug .constant.language.js, .meta.property-list.css, .meta.property-list.scss',
 
   /**
    * @type {boolean}
@@ -22,37 +23,40 @@ module.exports = {
    */
   getSuggestions (request) {
     if (!this.isTailwindProject) {
-      return [];
+      return []
     }
 
-    let { prefix, bufferPosition, editor, scopeDescriptor } = request;
+    let { prefix, bufferPosition, editor, scopeDescriptor } = request
 
     if (prefix.length === 0) {
       const character = editor.getTextInRange([
         [bufferPosition.row, bufferPosition.column - 1],
         bufferPosition
-      ]);
+      ])
 
       if (character !== '-') {
-        return [];
+        return []
       }
 
-      prefix = character;
+      prefix = character
     }
 
-    const { scopes } = scopeDescriptor;
-    const line = editor.getTextInRange([[bufferPosition.row, 0], bufferPosition]);
+    const { scopes } = scopeDescriptor
+    const line = editor.getTextInRange([
+      [bufferPosition.row, 0],
+      bufferPosition
+    ])
 
     if (
       !line.match(/@apply/i) &&
       !line.match(/class|className/i) &&
-      !line.match(/style={tailwind\([\n\s]*/) &&
+      !line.match(/tailwind\([\n\s]*/) &&
       !scopes.includes('source.pug')
     ) {
-      return [];
+      return []
     }
 
-    const suggestions = [];
+    const suggestions = []
 
     for (const [text, rightLabel] of completions) {
       if (!prefix || text.startsWith(prefix)) {
@@ -61,19 +65,19 @@ module.exports = {
           rightLabel: rightLabel,
           text: text,
           type: 'tailwind'
-        };
-
-        if (rightLabel.indexOf('color') >= 0) {
-          const result = rightLabel.match(/#[0-9a-f]{3,6}/i);
-          const color = result ? result[0] : 'transparent';
-
-          completion.leftLabelHTML = `<div style="background-color: ${color}" class="tailwind__color-preview"></div>`;
         }
 
-        suggestions.push(completion);
+        if (rightLabel.indexOf('color') >= 0) {
+          const result = rightLabel.match(/#[0-9a-f]{3,6}/i)
+          const color = result ? result[0] : 'transparent'
+
+          completion.leftLabelHTML = `<div style="background-color: ${color}" class="tailwind__color-preview"></div>`
+        }
+
+        suggestions.push(completion)
       }
     }
 
-    return suggestions;
+    return suggestions
   }
-};
+}
