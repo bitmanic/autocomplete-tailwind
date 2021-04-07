@@ -46,7 +46,7 @@ module.exports = {
     if (
       !line.match(/@apply/i) &&
       !line.match(/class|className/i) &&
-      !line.match(/style={tailwind\([\n\s]*/) &&
+      !line.match(/tailwind\([\n\s]*/) &&
       !scopes.includes('source.pug')
     ) {
       return [];
