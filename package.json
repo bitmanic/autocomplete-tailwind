@@ -1,6 +1,6 @@
 {
   "name": "atom-tailwindcss",
-  "version": "0.9.0",
+  "version": "0.9.1",
   "description": "An autocompletion provider for the utility-first CSS framework Tailwind",
   "license": "MIT",
   "repository": "https://github.com/bitmanic/atom-tailwindcss.git",
