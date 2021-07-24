@@ -26,7 +26,6 @@
     "tailwind",
     "tailwindcss"
   ],
-  "dependencies": {},
   "devDependencies": {
     "eslint": "^7.0.0",
     "eslint-config-standard": "^14.1.1",
@@ -37,7 +36,7 @@
     "json-stringify-pretty-compact": "^2.0.0",
     "semistandard": "^14.0.1",
     "snazzy": "^8.0.0",
-    "tailwindcss": "^1.1.2"
+    "tailwindcss": "^2.2.7"
   },
   "providedServices": {
     "autocomplete.provider": {
