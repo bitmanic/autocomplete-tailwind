@@ -1,5 +1,11 @@
 # atom-tailwindcss
 
+### 🚨 DEPRECATED 🚨
+
+**I no longer use Atom, so I have no need to maintain this package. Feel free to contribute PRs or fork this repo. Thanks!** ✌️
+
+---
+
 __NOTE:__ This package is forked from [vinkla/autocomplete-tailwind](https://github.com/vinkla/autocomplete-tailwind), where it has been archived and abandoned by the previous owner.
 
 The project is now in a state of maintenance; there is no active development. If you're here because you are using this project but the completions list is not up to date, feel free to make a pull request!
